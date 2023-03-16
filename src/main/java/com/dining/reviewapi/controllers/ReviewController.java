@@ -1,4 +1,4 @@
-package controllers;
+package com.dining.reviewapi.controllers;
 
 import com.dining.reviewapi.repositories.ReviewRepository;
 import org.springframework.web.bind.annotation.RequestMapping;

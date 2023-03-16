@@ -19,6 +19,7 @@ public class Restaurant {
     private String name;
     private String city;
     private String state;
+    private String zipcode;
     private List<String> type;
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
