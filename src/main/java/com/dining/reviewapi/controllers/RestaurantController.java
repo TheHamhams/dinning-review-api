@@ -25,6 +25,17 @@ public class RestaurantController {
         return ResponseEntity.ok(restaurants);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Restaurant> getRestaurant(@PathVariable("id") Integer id) {
+        Optional<Restaurant> restaurantOptional = this.restaurantRepository.findById(id);
+        if (restaurantOptional.isEmpty()) {
+            return null;
+        }
+
+        Restaurant restaurant = restaurantOptional.get();
+        return ResponseEntity.ok(restaurant);
+    }
+
 //    POST
     @PostMapping("/create")
     public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant request) {
