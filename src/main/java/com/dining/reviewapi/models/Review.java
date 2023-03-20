@@ -15,7 +15,7 @@ import java.util.Date;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
     private Float rating;
     private Float peanuts;
     private Float egg;

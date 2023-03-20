@@ -13,7 +13,6 @@ import com.dining.reviewapi.repositories.ReviewRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class ReviewController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Review> getReviewById(@PathVariable("id") Long id) {
+    public ResponseEntity<Review> getReviewById(@PathVariable("id") Integer id) {
         Review review = this.reviewRepository.findById(id)
                 .orElseThrow(() -> new ReviewIdNotFoundException("Review not found"));
 
@@ -94,7 +93,7 @@ public class ReviewController {
 
 //    DELETE
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteReview(@PathVariable("id") Long id) {
+    public ResponseEntity<String> deleteReview(@PathVariable("id") Integer id) {
         Review review = this.reviewRepository.findById(id)
                 .orElseThrow(() -> new ReviewIdNotFoundException("Review not found"));
 
