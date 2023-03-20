@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 
 @RestController
 @RequestMapping("/api/author")
@@ -36,10 +37,13 @@ public class AuthorController {
 //    POST
     @PostMapping("/create")
     public ResponseEntity<Author> createAuthor(@RequestBody Author request) {
-        Author author = this.authorRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new UsernameAlreadyExistsException("Username already exists"));
+        Optional<Author> authorOptional = this.authorRepository.findByUsername(request.getUsername());
 
-        this.authorRepository.save(request);
+        if (authorOptional.isPresent()) {
+            throw new UsernameAlreadyExistsException("Username already exists");
+        }
+
+        Author author = this.authorRepository.save(request);
 
         return ResponseEntity.ok(author);
     }
